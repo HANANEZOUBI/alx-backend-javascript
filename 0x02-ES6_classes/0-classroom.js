@@ -1,7 +1,12 @@
-// ClassRoom.js
-
+/**
+ * Represents a classroom.
+ */
 export default class ClassRoom {
-    constructor(maxStudentsSize) {
-        this._maxStudentsSize = typeof maxStudentsSize === 'number' ? maxStudentsSize : 0;
-    }
+  /**
+     * Creates a classroom.
+     * @param {Number} maxStudentsSize - The maximum number of students.
+     */
+  constructor(maxStudentsSize) {
+    this._maxStudentsSize = maxStudentsSize;
+  }
 }
