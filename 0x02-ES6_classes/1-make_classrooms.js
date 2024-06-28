@@ -1,16 +1,9 @@
-// Importing the ClassRoom class
-import ClassRoom from './0-classroom.js';
+import ClassRoom from './0-classroom';
 
-// Function to initialize rooms
-function initializeRooms() {
-    // Creating an array of ClassRoom objects with the specified sizes
-    const rooms = [
-        new ClassRoom(19),
-        new ClassRoom(20),
-        new ClassRoom(34)
-    ];
-    return rooms;
+/**
+ * Creates an array of {@link ClassRoom}s.
+ * returns {ClassRoom[]} An array of {@link ClassRoom}s.
+ */
+export default function initializeRooms() {
+  return [19, 20, 34].map((maxStudentsSize) => new ClassRoom(maxStudentsSize));
 }
-
-// Exporting the initializeRooms function
-export default initializeRooms;

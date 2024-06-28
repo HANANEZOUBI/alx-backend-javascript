@@ -1,20 +1,23 @@
-const Building = require('./5-building.js');
+import Building from './5-building';
 
-class SkyHighBuilding extends Building {
-    constructor(sqft, floors) {
-        super(sqft);
-        this._floors = typeof floors === 'number' ? floors : 0;
-    }
+export default class SkyHighBuilding extends Building {
+  constructor(sqft, floors) {
+    super(sqft);
+    this._floors = floors;
+  }
 
-    // Getter for floors attribute
-    get floors() {
-        return this._floors;
-    }
+  get floors() {
+    return this._floors;
+  }
 
-    // Override the evacuationWarningMessage method
-    evacuationWarningMessage() {
-        return `Evacuate slowly the ${this._floors} floors.`;
+  set floors(floors) {
+    if (typeof floors !== 'number') {
+      throw TypeError('Floors must be a number');
     }
+    this._floors = floors;
+  }
+
+  evacuationWarningMessage() {
+    return `Evacuate slowly the ${this._floors} floors`;
+  }
 }
-
-module.exports = SkyHighBuilding;

@@ -1,53 +1,48 @@
-class Car {
-    constructor(brand, motor, color) {
-        this._brand = typeof brand === 'string' ? brand : '';
-        this._motor = typeof motor === 'string' ? motor : '';
-        this._color = typeof color === 'string' ? color : '';
-    }
+export default class Car {
+  constructor(brand, motor, color) {
+    this._brand = brand;
+    this._motor = motor;
+    this._color = color;
+  }
 
-    // Getter and setter for brand attribute
-    get brand() {
-        return this._brand;
-    }
+  get brand() {
+    return this._brand;
+  }
 
-    set brand(newBrand) {
-        if (typeof newBrand === 'string') {
-            this._brand = newBrand;
-        } else {
-            throw new TypeError('Brand must be a string');
-        }
-    }
+  get motor() {
+    return this._motor;
+  }
 
-    // Getter and setter for motor attribute
-    get motor() {
-        return this._motor;
-    }
+  get color() {
+    return this._color;
+  }
 
-    set motor(newMotor) {
-        if (typeof newMotor === 'string') {
-            this._motor = newMotor;
-        } else {
-            throw new TypeError('Motor must be a string');
-        }
+  set brand(brand) {
+    if (typeof brand !== 'string') {
+      throw TypeError('Brand must be a string');
     }
+    this._brand = brand;
+  }
 
-    // Getter and setter for color attribute
-    get color() {
-        return this._color;
+  set motor(motor) {
+    if (typeof motor !== 'string') {
+      throw TypeError('Motor must be a string');
     }
+    this._motor = motor;
+  }
 
-    set color(newColor) {
-        if (typeof newColor === 'string') {
-            this._color = newColor;
-        } else {
-            throw new TypeError('Color must be a string');
-        }
+  set color(color) {
+    if (typeof color !== 'string') {
+      throw TypeError('Color must be a string');
     }
+    this._color = color;
+  }
 
-    // Method to clone a car
-    cloneCar() {
-        return new Car(this._brand, this._motor, this._color);
-    }
+  static get [Symbol.species]() {
+    return this;
+  }
+
+  cloneCar() {
+    return new this.constructor[Symbol.species](this._brand, this._motor, this._color);
+  }
 }
-
-module.exports = Car;

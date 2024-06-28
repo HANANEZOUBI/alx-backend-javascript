@@ -1,44 +1,38 @@
-class HolbertonClass {
-    constructor(size, location) {
-        this._size = typeof size === 'number' ? size : 0;
-        this._location = typeof location === 'string' ? location : '';
-    }
+export default class HolbertonClass {
+  constructor(size, location) {
+    this._size = size;
+    this._location = location;
+  }
 
-    // Getter and setter for size attribute
-    get size() {
-        return this._size;
-    }
+  get size() {
+    return this._size;
+  }
 
-    set size(newSize) {
-        if (typeof newSize === 'number') {
-            this._size = newSize;
-        } else {
-            throw new TypeError('Size must be a number');
-        }
+  set size(size) {
+    if (typeof size !== 'number') {
+      throw TypeError('Size must be a number');
     }
+    this._size = size;
+  }
 
-    // Getter and setter for location attribute
-    get location() {
-        return this._location;
-    }
+  get location() {
+    return this._location;
+  }
 
-    set location(newLocation) {
-        if (typeof newLocation === 'string') {
-            this._location = newLocation;
-        } else {
-            throw new TypeError('Location must be a string');
-        }
+  set location(location) {
+    if (typeof location !== 'string') {
+      throw TypeError('Location must be a string');
     }
+    this._location = location;
+  }
 
-    // Casting to a Number returns the size
-    valueOf() {
-        return this._size;
+  [Symbol.toPrimitive](hint) {
+    if (hint === 'number') {
+      return this._size;
     }
-
-    // Casting to a String returns the location
-    toString() {
-        return this._location;
+    if (hint === 'string') {
+      return this._location;
     }
+    return this;
+  }
 }
-
-module.exports = HolbertonClass;
